@@ -46,7 +46,7 @@ public class FlowLinmitController {
     @SentinelResource(value = "testHotKey",blockHandler = "dealtest_Handler")
     public String testHotKey(@RequestParam(value = "p1",required = false) String p1,
                              @RequestParam(value = "p2",required = false) String p2){
-        return "-------testHotKey哈哈";
+        return "-------testHotKey哈哈哈";
     }
 
     public String dealtest_Handler(String p1, String p2, BlockException e) {
