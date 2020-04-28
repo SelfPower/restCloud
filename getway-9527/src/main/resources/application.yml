@@ -1,0 +1,26 @@
+server:
+  port: 9527
+spring:
+  application:
+    name: getway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true   #开启动态路由功能  对微服务名进行路由
+      routes:
+        - id: payment_routh #路由id，建议配置路由的服务名
+          uri: lb://hystrix-payment
+          predicates:
+            - Path=/payment/ok/**  #根据path的断言
+        - id: payment_routh2
+          uri: lb://hystrix-payment
+          predicates:
+            - Path=/payment/timeout/**
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8080/eureka,http://localhost:8081/eureka

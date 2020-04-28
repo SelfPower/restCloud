@@ -1,0 +1,20 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: hystrix-order
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8080/eureka,http://localhost:8081/eureka
+    register-with-eureka: true
+    fetch-registry: true
+ribbon:
+  ReadTimeout: 5000 #两段连接实时间
+  ConnectTimeout: 5000 #连接后冲服务器对取可用资源的时间1
+logging:
+  level:
+    com.szq.order.service.PaymentHytrixService: debug
+feign:
+  hystrix:
+    enabled: true

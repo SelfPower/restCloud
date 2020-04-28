@@ -1,0 +1,32 @@
+server:
+  port: 3344
+spring:
+  application:
+    name: cloud-config-center
+  cloud:
+    config:
+      server:
+        git:
+          uri: git@github.com:SelfPower/springcloud-config.git
+          ###搜索目录
+          search-paths:
+            - springcloud-config
+      #选择分支
+      label: master
+  rabbitmq:
+    host: 192.168.234.157
+    port: 5672
+    username: guest
+    password: guest
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8080/eureka,http://localhost:8081/eureka
+    register-with-eureka: true
+    fetch-registry: true
+#rabbitmq相关配置，暴露bus刷新配置的端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh'
